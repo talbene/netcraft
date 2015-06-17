@@ -15,18 +15,13 @@ function init()  {
  	fail: function(err){
  		console.log(err);
  	}
- }
-
+ };
     UTILS.ajax("data/config.json", options);
-    UTILS.addEvent("body", "onload", tabs());
-   UTILS.removeEvent("body", "onLoad", tabs());
-}
 
+}
 window.addEventListener("load", init, false);
 
 //iframe
-
-
 
 var elementList = document.querySelector(".link");
 //console.log(elementList);
@@ -40,7 +35,6 @@ function select(e) {
 }
 
 //tabs
-
 
 var tabLinks = [];
 var contentDivs =[];
@@ -67,8 +61,10 @@ function tabs() {
         if(tabLinks.hasOwnProperty(id)){
             tabLinks[id].onclick = showTab;
             tabLinks[id].onfocus = function() { this.blur() };
-            if ( i == 0 ) tabLinks[id].className = 'selected';
-            i++;}
+            if ( i == 0 )
+            {tabLinks[id].className = 'selected';}
+            i++;
+            }
     }
 
     // Hide all content divs except the first
@@ -84,6 +80,7 @@ function tabs() {
 function showTab() {
     var selectedId = getHash( this.getAttribute('href') );
 
+
     // Highlight the selected tab
     // Also show the selected content div, and hide all others.
     for ( var id in contentDivs ) {
@@ -94,17 +91,22 @@ function showTab() {
             } else {
                 tabLinks[id].className = '';
                 contentDivs[id].className = 'tabContent hide';
-            }
+              }
         }
     }
-
+    //add hash to url and prevent jumping
+    var yScroll=document.body.scrollTop;
+    window.location.hash = "#"+selectedId;
+    document.body.scrollTop=yScroll;
     // Stop the browser following the link/prevent default
     return false;
 }
 // get a tags
 function getTagName( element, tagName ) {
     for ( var i = 0; i < element.childNodes.length; i++ ) {
-        if ( element.childNodes[i].nodeName == tagName ) return element.childNodes[i];
+        if ( element.childNodes[i].nodeName = tagName ) {
+            return element.childNodes[i]
+        }
     }
 }
 // get  href url with #
@@ -113,3 +115,7 @@ function getHash( url ) {
     return url.substring( hashPos + 1 );
 }
 
+
+
+UTILS.addEvent("body", 'onload', tabs());
+UTILS.removeEvent("body", 'onload', tabs());
