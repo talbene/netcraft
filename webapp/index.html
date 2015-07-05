@@ -14,9 +14,10 @@
         <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
-    <body class="clearfix"  >
+    <body class="clearfix "  >
         <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser.
+           Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
         <!-- Add your site or application content here -->
@@ -95,7 +96,7 @@
 
         <section class="tabs">
             <ul id="tabs">
-                <li><a href="#quick-reports" >Quick Reports</a></li>
+                <li class="active" ><a href="#quick-reports" >Quick Reports</a></li>
                 <li><a href="#my-folders"  >My Folders</a></li>
                 <li><a href="#my-team-folders">My Team Folders</a></li>
                 <li><a href="#public-folders">Public Folders</a></li>
@@ -103,10 +104,10 @@
 
 
         <div class="content">
-            <div class="tabContent" id="quick-reports">
+            <div class="tabContent"  id="quick-reports">
                 <div class="selectStyle">
                     <select  class="link" name="select">
-                        <option  value="http://ynet.co.il" selected>Ynet</option>
+                        <option  value="http://ynet.co.il">Ynet</option>
                         <option value="http://walla.co.il" >Walla</option>
                         <option value="http://mako.co.il">Mako</option>
                     </select>
@@ -125,7 +126,7 @@
                         <fieldset>
                             <p class="headForm">Report 01</p>
                                 <label for="Name1">Name</label>
-                                 <input type="text"  value="" name="Name1" id="Name1" placeholder="Name">
+                                 <input class="captureInput" type="text"  value="" name="Name1" id="Name1" placeholder="Name">
                                  <input class="urlInput" type="text" value="" name="URL1" id="URL1" placeholder="URL">
                                  <label class="urlLabel" for="URL1" >URL</label>
 
@@ -134,7 +135,7 @@
                         <fieldset>
                             <p class="headForm">Report 01</p>
                                 <label for="Name2">Name</label>
-                                <input type="text"  value="" name="Name2" id="Name2" placeholder="Name">
+                                <input class="captureInput" type="text"  value="" name="Name2" id="Name2" placeholder="Name">
                                 <input class="urlInput" type="text" value="" name="URL2" id="URL2" placeholder="URL">
                                 <label class="urlLabel" for="URL2" >URL</label>
                         </fieldset>
@@ -142,18 +143,18 @@
                         <fieldset>
                             <p class="headForm">Report 01</p>
                                 <label for="Name3">Name</label>
-                                <input type="text"  value="" name="Name3" id="Name3" placeholder="Name">
+                                <input class="captureInput" type="text"  value="" name="Name3" id="Name3" placeholder="Name">
                                  <input class="urlInput" type="text" value="" name="URL3" id="URL3" placeholder="URL">
                                 <label class="urlLabel" for="URL3" >URL</label>
                         </fieldset>
-                        <button id="saveBtn" class="btn">Save</button>
-                        <button id="clearBtn" class="btn">Cancle</button>
+                        <button type=button id="saveBtn" class="btn">Save</button>
+                        <button  type=button id="clearBtn" class="btn">Cancle</button>
                     </form>
                 </div>
 
                 </div>
 
-            <div class="tabContent" id="my-folders">
+            <div class="tabContent hide" id="my-folders">
                 <button class="btnExpand"><img src="img/icons/expand.png"  width="15" height="15" class="btnImg"></button>
                 <iframe src="http://www.paulirish.com/"  class="iframe"  width="100%" height="350"
                         frameborder="0" scrolling="yes">
@@ -161,11 +162,11 @@
 
             </div>
 
-            <div class="tabContent" id="my-team-folders">
+            <div class="tabContent hide" id="my-team-folders">
                 my-team-folders
             </div>
 
-            <div class="tabContent" id="public-folders">
+            <div class="tabContent hide" id="public-folders">
                 <button class="btnExpand"><img src="img/icons/expand.png"  width="15" height="15" class="btnImg"></button>
 
                 <iframe src="http://www.paulirish.com/"  class="iframe"  width="100%" height="350"
@@ -176,10 +177,6 @@
             </div>
         </section>
     </section>
-
-    <script src="js/main.js"></script>
-</body>
-</html>
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

@@ -21,8 +21,8 @@ function init()  {
 }
 window.addEventListener("load", init, false);
 
-//iframe
 
+//iframe
 var elementList = document.querySelector(".link");
 //console.log(elementList);
 elementList.addEventListener("change", select, false);
@@ -36,86 +36,133 @@ function select(e) {
 
 //tabs
 
-var tabLinks = [];
-var contentDivs =[];
 
-function tabs() {
 
-    // take the tab links and content divs from the page
-    var tabListItems = document.querySelector('#tabs').childNodes;
-    // loop for li
-    for ( var i = 0; i < tabListItems.length; i++ ) {
-        if ( tabListItems[i].nodeName == "LI" ) {
-            //loop for a
-            var tabLink = getTagName( tabListItems[i], 'A' );
-            var id = getHash( tabLink.getAttribute('href') );
-            tabLinks[id] = tabLink;
-            contentDivs[id] = document.getElementById( id );
-        }
+$(document).ready(function() {
+    $('#tabs li> a').click(function(){
+
+        //get displaying tab
+        var active_tab_selector = $('#tabs li.active>a').attr('href');
+
+
+        //find actived - remove 'active' css
+        var actived_nav = $('#tabs li.active');
+        actived_nav.removeClass('active');
+
+
+        //add 'active' css to li
+        $(this).parents('li').addClass('active');
+
+
+        //hide displaying tab content
+        $(active_tab_selector).removeClass('active');
+        $(active_tab_selector).addClass('hide');
+
+        //show target tab content /id
+        var target_tab_selector = $(this).attr('href');
+        $(target_tab_selector).removeClass('hide');
+        $(target_tab_selector).addClass('active');
+
+        var yScroll=document.body.scrollTop;
+        window.location.hash = $(this).attr('href');
+        document.body.scrollTop = yScroll;
+
+        //stop browser to take action for clicked anchor
+        event.preventDefault();
+    });
+});
+
+    $(window).on('hashchange', function(){
+
+    console.log("localhost:63342/webapp/index.html" + window.location.hash);
+    event.preventDefault();
+
+
+ })
+
+
+//UTILS.addEvent(window, 'load', tabs());
+
+
+
+//UTILS.(window,'hashchange', this.changeTab);
+
+//
+var formModule = {
+
+    init: function () {
+        this.initEvent();
+        this.toLocalStorage();
+        this.clearLocalStorage();
+        this.fromLocalStorage();
+
+    },
+
+    toLocalStorage: function(){
+      $("#saveBtn").on("click", function(){
+
+            var captureValue = [];
+            var urlValue = [];
+          //  var storage = [];
+            var data = [];
+
+            var $captureList = $(".captureInput");
+            var $urlList = $(".urlInput");
+
+
+            $captureList.each(function() {
+                captureValue.push(this.value);
+            });
+
+            $urlList.each(function() {
+                urlValue.push(this.value);
+            });
+
+
+          for (var i = 0; i<captureValue.length; i++) {
+           // storage[captureValue[i]] = urlValue[i];
+            data[i] =([captureValue[i], urlValue[i]])
+              //localStorage['data']= data[i];
+
+             localStorage.setItem("data" , JSON.stringify(data[i]));
+
+          }
+
+      });
+    },
+
+    clearLocalStorage: function() {
+        $("#clearBtn").on("click", function () {
+            window.localStorage.clear();
+        });
+    },
+
+
+    fromLocalStorage: function() {
+
+
+    },
+
+    initEvent: function () {
+       // UTILS.addEvent(body,'click', this.toLocalStorage());
+        //UTILS.addEvent(window, 'click', this.toLocalStorage())
+       // UTILS.addEvent("clearBtn", 'load', this.toLocalStorage());
     }
-
-    // Assign onclick events to the tab links, and
-    // highlight the first tab
-    var i = 0;
-    for ( var id in tabLinks ) {
-        if(tabLinks.hasOwnProperty(id)){
-            tabLinks[id].onclick = showTab;
-            tabLinks[id].onfocus = function() { this.blur() };
-            if ( i == 0 )
-            {tabLinks[id].className = 'selected';}
-            i++;
-            }
-    }
-
-    // Hide all content divs except the first
-    var i = 0;
-    for ( var id in contentDivs ) {
-        if(contentDivs.hasOwnProperty(id)){
-            if ( i != 0 ) contentDivs[id].className = 'tabContent hide';
-            i++;
-        }
-    }
-}
-
-function showTab() {
-    var selectedId = getHash( this.getAttribute('href') );
-
-
-    // Highlight the selected tab
-    // Also show the selected content div, and hide all others.
-    for ( var id in contentDivs ) {
-        if(contentDivs.hasOwnProperty(id)){
-            if ( id == selectedId ) {
-                tabLinks[id].className = 'selected';
-                contentDivs[id].className = 'tabContent';
-            } else {
-                tabLinks[id].className = '';
-                contentDivs[id].className = 'tabContent hide';
-              }
-        }
-    }
-    //add hash to url and prevent jumping
-    var yScroll=document.body.scrollTop;
-    window.location.hash = "#"+selectedId;
-    document.body.scrollTop=yScroll;
-    // Stop the browser following the link/prevent default
-    return false;
-}
-// get a tags
-function getTagName( element, tagName ) {
-    for ( var i = 0; i < element.childNodes.length; i++ ) {
-        if ( element.childNodes[i].nodeName = tagName ) {
-            return element.childNodes[i]
-        }
-    }
-}
-// get  href url with #
-function getHash( url ) {
-    var hashPos = url.lastIndexOf ( '#' );
-    return url.substring( hashPos + 1 );
-}
+};
+formModule.init();
 
 
 
-UTILS.addEvent("body", 'onload', tabs());
-UTILS.removeEvent("body", 'onload', tabs());
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -147,6 +147,9 @@ textarea {
     width: auto;
 }
 
+
+
+
 /*
  * Hide visually and from screen readers, but maintain layout
  */
@@ -485,12 +488,13 @@ ul {
 
 }
 
+
  .content .hide {
     display: none;
 }
 
 
-#tabs{
+#tabs {
     margin-top: 180px;
     list-style-type: none;
     position: relative;
@@ -516,11 +520,25 @@ ul {
 }
 
 
-#tabs a:hover, #tabs a:focus, #tabs a:active, #tabs a.selected  {
+#tabs a:hover,
+#tabs a:focus,
+.active,
+#tabs > .active > a
+{
     background-color: #F2F2F2;
     color: #000;
+
 }
 
+
+
+.tab-content.active{
+    display: block;
+}
+
+.tab-content.hide{
+    display: none;
+}
 /*buttons*/
 
 .btnExpand
@@ -715,3 +733,5 @@ fieldset .urlLabel {
 {
     right: 20px;
 }
+
+
